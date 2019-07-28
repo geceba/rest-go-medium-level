@@ -1,0 +1,10 @@
+curl http://localhost:8000/api/v1/users/ -X POST -d '{"username": "Eduardo", "password":"123"}' -H "Content-Type: application/json"
+
+
+curl http://localhost:8000/api/v1/users/2 -X PUT -d '{"username": "Eduard", "password":"1234"}' -H "Content-Type: application/json"
+
+
+curl http://localhost:8000/api/v1/users/2 -X DELETE -i
+
+
+mysql -u root -p

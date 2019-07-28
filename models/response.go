@@ -28,6 +28,28 @@ func SendNotFound(w http.ResponseWriter) {
   response.Send()
 }
 
+func SendUnprocessableEntity(w http.ResponseWriter) {
+  response := CreateDefaultResponse(w)
+  response.UnprocessableEntity()
+  response.Send()
+}
+
+func (this *Response) UnprocessableEntity() {
+  this.Status = http.StatusUnprocessableEntity
+  this.Message = "UnprocessableEntity"
+}
+
+func SendNoContent(w http.ResponseWriter) {
+  response := CreateDefaultResponse(w)
+  response.NoContent()
+  response.Send()
+}
+
+func (this *Response) NoContent() {
+  this.Status = http.StatusNoContent
+  this.Message = "No Content"
+}
+
 func SendData(w http.ResponseWriter, data interface{}) {
   response := CreateDefaultResponse(w)
   response.Data = data
