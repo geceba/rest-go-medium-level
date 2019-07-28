@@ -5,11 +5,12 @@ import(
   "github.com/gorilla/mux"
   "log"
   "./handlers"
+  "./models"
 )
 
 func main() {
   mux := mux.NewRouter()
-
+  models.SetDefaultUser()
   mux.HandleFunc("/api/v1/users/", handlers.GetUsers).Methods("GET")
   mux.HandleFunc("/api/v1/users/{id:[0-9]+}", handlers.GetUser).Methods("GET")
   mux.HandleFunc("/api/v1/users/", handlers.CreateUser).Methods("POST")
