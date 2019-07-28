@@ -5,17 +5,14 @@ import (
   "log"
   "database/sql"
   _ "github.com/go-sql-driver/mysql"
+  "../config"
 )
 
 var db *sql.DB
-const username string = "root"
-const password string = "zxczxc.123"
-const host string = "localhost"
-const port int = 3306
-const database string = "project_go"
 
 func CreateConnection() {
-  if connection, err := sql.Open("mysql", generateURL()); err != nil {
+  url := config.GetUrlDatabase()
+  if connection, err := sql.Open("mysql", url); err != nil {
     panic(err)
   } else {
     db = connection
@@ -41,10 +38,6 @@ func truncateTable(tableName string) {
 
 func CloseConnection() {
   db.Close()
-}
-
-func generateURL() string {
-  return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", username, password, host, port, database)
 }
 
 func existsTable(tableName string) bool {
