@@ -29,7 +29,14 @@ func CreateTables() {
 func createTable(tableName, schema string){
   if !existsTable(tableName){
     Exec(schema)
+  } else {
+    truncateTable(tableName)
   }
+}
+
+func truncateTable(tableName string) {
+  sql := fmt.Sprintf("TRUNCATE %s", tableName)
+  Exec(sql)
 }
 
 func CloseConnection() {
